@@ -1,0 +1,270 @@
+body {
+  background-color: rgb(242, 240, 248);
+}
+
+.navbar {
+  background-color: rgb(242, 240, 248);
+  display: flex;
+  align-items: center;
+  padding: 10px 8px;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+}
+
+.navbar__brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 10px;
+}
+
+.navbar__brand div {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.navbar__brand strong {
+  font-size: 25px;
+}
+
+.navbar__brand span {
+  font-size: 10px;
+}
+
+.navbar__brand img {
+  width: 30px;
+  height: 30px;
+}
+
+.navbar__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.nav-item {
+  width: auto;
+  height: 20px;
+  margin-left: 30px;
+  /* border-left: 2px solid black; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-item a:hover {
+  color: skyblue;
+}
+
+.nav-link {
+  color: white;
+}
+
+.nav-link:hover {
+  color: grey;
+}
+
+.login__btn {
+  position: absolute;
+  right: 40px;
+  border-radius: 15px;
+  border: 1px solid #88aed0;
+  background-color: #88aed0;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px 30px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+
+.login__btn span {
+  color: white;
+}
+
+.login__btn:active {
+  transform: scale(0.95);
+}
+
+.login__btn:focus {
+  outline: none;
+}
+
+.logout__btn {
+  border-radius: 15px;
+  border: 1px solid #88aed0;
+  background-color: #88aed0;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+  position: absolute;
+  right: 20px;
+  padding: 10px 30px;
+}
+
+.logout__btn span {
+  color: white;
+}
+
+.logout__btn:active {
+  transform: scale(0.95);
+}
+
+.logout__btn:focus {
+  outline: none;
+}
+
+.user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 200px;
+}
+
+.userprofile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.coin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-color: rgb(242, 240, 248);
+}
+
+.navbar__toggleBtn {
+  position: absolute;
+  display: none;
+  top: 20px;
+  right: 32px;
+}
+
+@media screen and (max-width: 700px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .login__btn {
+    display: none;
+  }
+
+  .logout__btn {
+    display: none;
+  }
+
+  .navbar__buttons {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    display: none;
+  }
+
+  .navbar__buttons li {
+    margin: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar__toggleBtn {
+    display: block;
+  }
+
+  .navbar__buttons.active {
+    display: flex;
+  }
+}
+
+.notifications {
+  width: 300px;
+  height: 0px;
+  opacity: 0;
+  position: absolute;
+  top: 63px;
+  right: 25px;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  font-family: "Noto Sans KR", sans-serif;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.notifications h2 {
+  font-size: 14px;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  color: rgb(105, 105, 106);
+}
+
+.notifications h2 span {
+  color: #f00;
+}
+
+.notifications-item {
+  display: flex;
+  border-bottom: 1px solid #eee;
+  padding: 6px 9px;
+  margin-bottom: 0px;
+  cursor: pointer;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.notifications-item:hover {
+  background-color: #eee;
+}
+
+.notifications-item img {
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin-right: 9px;
+  border-radius: 50%;
+  margin-top: 2px;
+}
+
+.notifications-item .text h4 {
+  color: rgb(124, 124, 126);
+  font-size: 16px;
+  margin-top: 3px;
+}
+
+.notifications-item .text p {
+  color: rgb(124, 124, 126);
+  font-size: 12px;
+}
+
+.text {
+  color: rgb(124, 124, 126);
+  font-size: 16px;
+}
+
+.notifications::-webkit-scrollbar {
+  background-color: #ffffff;
+  width: 20px;
+  border-radius: 5px;
+}
+
+.notifications::-webkit-scrollbar-track {
+  background-color: #d4dff0;
+  box-shadow: inset 0px 0px 5px white;
+}
+.notifications::-webkit-scrollbar-thumb {
+  background-color: #b9ceee;
+  border-radius: 20px;
+  width: 5px;
+  background-clip: padding-box;
+  border: 4px solid transparent;
+}

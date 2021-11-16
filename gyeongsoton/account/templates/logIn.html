@@ -1,0 +1,42 @@
+{% extends 'base.html' %}{% load static %}{% block extrahead %} {% endblock %}
+{% block content %} {% load static %}
+<html>
+  <head>
+    <link rel="stylesheet" href='{% static "css/login.css" %}' />
+    <title>Login</title>
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="container" id="container">
+        <div class="form-container sign-in-container">
+          <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            <h1>Sign IN</h1>
+            <br /><br />
+            <div class="form-element" placeholder="ID">{{form.username}}</div>
+            <div class="form-element" placeholder="비밀번호">{{form.password}}</div>
+            <br />
+            <div class="failed-login">
+              {% if messages %} {% for message in messages %}
+              <i class="fas fa-exclamation-triangle"></i>
+              {{message}} {% endfor %} {% endif %}
+            </div>
+            </br></br>
+            <button>로그인</button>
+          </form>
+        </div>
+        <div class="overlay-container">
+          <div class="overlay">
+            <div class="overlay-panel overlay-right">
+              <h1>Hello, Friend!</h1>
+              <p>회원가입을 하고 이음을 통해 소통해보세요😀</p>
+              <button class="ghost" id="signup" onclick="location.href='{% url 'signup' %}'">회원가입</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+{% endblock %}

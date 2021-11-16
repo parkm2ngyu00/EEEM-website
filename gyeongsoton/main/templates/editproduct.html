@@ -1,0 +1,53 @@
+{% extends 'base.html' %}{% load static %}{% block extrahead %} {% endblock %}
+{% block content %}
+
+<head>
+  <link rel="stylesheet" href='{% static "css/addProduct.css" %}' />
+  <title>addProduct</title>
+</head>
+
+<body style="background-color: rgb(242, 240, 248)">
+  <div class="titleBox">신문물 수정하기</div>
+  <div style="margin-left: 100px">
+    <form
+      action="{% url 'productEdit' editproduct.id %}"
+      enctype="multipart/form-data"
+      method="POST"
+    >
+      {% csrf_token %}
+      <div class="box" style="padding-top: 50px">
+        <input
+          type="text"
+          name="productName"
+          id="productName"
+          style="width: 225px"
+          placeholder="제목을 입력하세요."
+          value="{{editproduct.productName}}"
+          required
+        />
+      </div>
+      <div class="box">
+        <textarea
+          name="productText"
+          id="productText"
+          cols="90"
+          rows="15"
+          placeholder="내용을 입력하세요."
+          required
+        >
+{{editproduct.productText}}</textarea
+        >
+      </div>
+      <input
+        style="width: 225px; font-size: 15px; height: 100%"
+        type="file"
+        name="image"
+        file="{{editproduct.image}}"
+      />
+      <br /><br /><br />
+      <button class="submitButton" type="submit">수정하기</button>
+    </form>
+  </div>
+</body>
+
+{% endblock %}

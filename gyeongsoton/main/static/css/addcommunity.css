@@ -1,0 +1,72 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  padding-top: 80px;
+  font-size: 20px;
+  color: #298adf;
+}
+
+.container {
+  padding-top: 50px;
+}
+
+.mb-3 input {
+  height: 30px;
+  border: 1px solid black;
+  margin-bottom: 30px;
+}
+
+.mb-3 input:focus {
+  outline: 1px solid skyblue;
+  border: 1px solid skyblue;
+  border-radius: 5px;
+}
+
+textarea:focus {
+  outline: 1px solid skyblue;
+  border: 1px solid skyblue;
+  border-radius: 5px;
+}
+
+.submitButton {
+  margin-top: 30px;
+  width: 100px;
+  height: 35px;
+  font-size: 19px;
+  background-color: #88aed0;
+  color: whitesmoke;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.form-control {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.overlay-container p {
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  margin: 20px 0 30px;
+}
+
+.form-container span {
+  font-size: 12px;
+}
+
+.social-container a {
+  color: #333;
+  font-size: 14px;
+  text-decoration: none;
+  margin: 15px 0;
+}
+
+.overlay-panel p {
+  font-size: 15px;
+}

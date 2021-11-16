@@ -1,0 +1,62 @@
+{% extends 'base.html' %}{% load static %}{% block extrahead %} {% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/addmanner.css' %}" />
+<body>
+  <div class="title">매너를 지켜쥬 글쓰기</div>
+  <form action="{% url 'mannerEdit' manner.id %}" method="post">
+    {% csrf_token %}
+    <div class="titleandhashtag" style="padding-top: 50px">
+      <div class="box">
+        <input
+          class="textInput"
+          type="text"
+          name="text"
+          id="title"
+          style="width: 225px"
+          placeholder="제목을 입력하세요"
+          value="{{manner.text}}"
+          required
+        />
+      </div>
+      <div class="box hashtag">
+        <div>
+          <input
+            type="text"
+            name="hashtagMe"
+            placeholder="#누가"
+            id="hashtagMe"
+            value="{{manner.hashtag_me}}"
+            disabled
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            name="hashtagYou"
+            placeholder="#누구에게"
+            id="hashtagYou"
+            value="{{manner.hashtag_you}}"
+            disabled
+          />
+        </div>
+      </div>
+    </div>
+    <div class="box">
+      <!-- <label for="content">내용</label><br /> -->
+      <textarea
+        class="form-control"
+        name="hashtag_situation"
+        id="body"
+        cols="90"
+        rows="15"
+        placeholder="내용을 입력해 주세요."
+        required
+      >
+{{manner.hashtag_situation}}</textarea
+      >
+    </div>
+    <button class="submitButton" type="submit">수정하기</button>
+  </form>
+</body>
+
+{% endblock %}

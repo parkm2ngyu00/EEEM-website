@@ -1,0 +1,80 @@
+{% extends 'base.html' %}{% load static %}{% block extrahead %} {% endblock %}
+{% block content %}
+
+<head>
+  <link rel="stylesheet" href='{% static "css/newtermEnd.css" %}' />
+  <title>newtermResult</title>
+</head>
+
+<body>
+  <div
+    style="
+      padding-top: 100px;
+      text-align: center;
+      font-size: 35px;
+      font-family: 'Noto Serif KR', serif;
+      font-weight: 10px;
+    "
+  >
+    {{year}}학년도 신조어 능력고사 성적통지표
+  </div>
+  <div class="borderBox" style="display: inline-block">
+    <div style="display: flex; font-weight: bold">
+      <div class="table-data" style="width: 300px">일시</div>
+      <div class="table-data" style="width: 500px">성명</div>
+      <div class="table-data" style="width: 120px">성별</div>
+      <div class="table-data" style="width: 120px">나이</div>
+      <div class="table-data" style="width: 120px">고사장</div>
+    </div>
+    <div style="display: flex">
+      <div
+        class="table-data"
+        style="width: 300px; font-size: 25px; padding-top: 20px"
+      >
+        {{now|date:'Y-m-d fa' }}
+      </div>
+      {% if user.is_authenticated %}
+      <div class="table-data" style="width: 500px">{{user.nickname}}</div>
+      <div class="table-data" style="width: 120px">{{user.sex}}</div>
+      <div class="table-data" style="width: 120px">{{user.age}}대</div>
+      {% else %}
+      <div class="table-data" style="width: 500px">비회원상태</div>
+      <div class="table-data" style="width: 120px">비회원상태</div>
+      <div class="table-data" style="width: 120px">비회원상태</div>
+      {% endif %}
+      <div class="table-data" style="width: 120px">온라인</div>
+    </div>
+    <div style="display: flex">
+      <div class="table-data" style="height: 141px; width: 50%">
+        <span>점수</span>
+        <div style="margin-top: 20px; font-size: 70px">
+          {{score}} / {{newtermCount}}
+        </div>
+      </div>
+      {% if level == 3 %}
+      <div
+        class="table-data"
+        style="width: 50%; height: 106px; padding-top: 50px; font-size: 70px"
+      >
+        당신은 핵인싸!
+      </div>
+      {% elif level == 2 %}
+      <div
+        class="table-data"
+        style="width: 50%; height: 106px; padding-top: 50px; font-size: 70px"
+      >
+        당신은 인싸!
+      </div>
+      {% else %}
+      <div
+        class="table-data"
+        style="width: 50%; height: 106px; padding-top: 50px; font-size: 70px"
+      >
+        이제부터 인싸!
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</body>
+
+{% endblock %}

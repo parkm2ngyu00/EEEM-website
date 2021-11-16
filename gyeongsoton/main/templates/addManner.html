@@ -1,0 +1,69 @@
+{% extends 'base.html' %}{% load static %}{% block extrahead %} {% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/addmanner.css' %}" />
+<body>
+  <div class="title">매너를 지켜쥬 글쓰기</div>
+  <form action="{% url 'create' %}" method="POST">
+    {% csrf_token %}
+    <div class="titleandhashtag" style="padding-top: 50px">
+      <div class="box">
+        <input
+          class="textInput"
+          type="text"
+          name="title"
+          id="title"
+          style="width: 225px"
+          placeholder="제목을 입력하세요"
+          required
+        />
+      </div>
+      <div class="box hashtag">
+        {% if not user_certification.certified %}
+        <div>
+          <input
+            type="text"
+            name="hashtagMe"
+            placeholder="#누가"
+            id="hashtagMe"
+            required
+          />
+        </div>
+        {% else %}
+        <div>
+          <input
+            type="text"
+            name="hashtagMe"
+            placeholder="{{user_certification.job}}"
+            id="hashtagMe"
+            disabled
+          />
+        </div>
+        {% endif %}
+        <div>
+          <input
+            type="text"
+            name="hashtagYou"
+            placeholder="#누구에게"
+            id="hashtagYou"
+            required
+          />
+        </div>
+      </div>
+    </div>
+    <div class="box">
+      <!-- <label for="content">내용</label><br /> -->
+      <textarea
+        class="form-control"
+        name="body"
+        id="body"
+        cols="90"
+        rows="15"
+        placeholder="내용을 입력해 주세요."
+        required
+      ></textarea>
+    </div>
+    <button class="submitButton" type="submit">글쓰기</button>
+  </form>
+</body>
+
+{% endblock %}

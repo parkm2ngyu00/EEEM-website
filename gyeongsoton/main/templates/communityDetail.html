@@ -1,0 +1,117 @@
+{% extends 'base.html' %}{% load static %}{% block extrahead %}
+
+{% endblock %} {% block content %}
+
+<head>
+  <link rel="stylesheet" href='{% static "css/communityDetail.css" %}'>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/9452825322.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="main-container">
+        <div class="communityDetail">
+            <h6 class="date">
+                {{community.date|date:'Y-m-d fa' }}
+            </h6>
+             <div class="userimg">
+                <img src="{{community.user.profile.url}}" style="border-radius: 70%" alt="user" width="50px" class="rounded-circle">
+             </div>
+             <div class="userinfo">
+                <h6 class="font-medium" style="margin-bottom: 9px;">{{community.user.nickname}}
+                    <span class="sex">{{community.user.sex}}</span>
+                    {{community.user.age}}대
+                </h6>
+             </div>
+             <div class="title">
+                {{community.title}}
+            </div>
+             <div class="text">
+                 {{community.text}}
+             </div>
+             {% if community.user == request.user %}
+             <div class="retouch">
+                <button class="btns" onclick="location.href='{% url 'toEditCommunitypage' community.id %}'">수정</button>
+                <button class="btns" onclick="location.href='{% url 'communityDelete' community.id %}'">삭제</button>        
+             </div>
+             {% endif %}
+        </div>
+
+        <div class="chat-box">
+            {% if user.is_authenticated %}
+                <form action="{% url 'addComment' community.id %}" method="POST" enctype="multipart/form-data">
+                    {%csrf_token%}
+                    <input id="inputText" name="commenttext" type="text" placeholder="댓글을 달아 의견을 공유해주세요!"/>
+                    <button id="inputSubmit" type="submit" >SUBMIT</button>
+                </form>
+            {% else %}
+                <a href="#loginmodal" rel="modal:open">
+                    <input id="inputText" name="commenttext" type="text" placeholder="댓글을 달아 의견을 공유해주세요!"/>
+                    <button id="inputSubmit" type="submit" >SUBMIT</button>
+                </a>
+            {% endif %}
+        </div> 
+
+        <div class="comment">            
+            <div class="row">
+                {% for comment in comments.all %}
+                <div class="col-8" style="width: 750px;">
+                    <div class="card card-white post">
+                        <div class="post-heading">
+                            <h6 class="commentdate">{{comment.date|date:'Y-m-d fa' }}</h6>
+                            <div class="commentUserImage">
+                                <img src="{{comment.user.profile.url}}" style="border-radius: 70%" alt="user" width="38px" class="rounded-circle">
+                            </div>
+                            <div class="float-left meta">
+                                <div class="title h5">
+                                    <b>{{comment.user.nickname}}
+                                    {{comment.user.sex}}
+                                    {{comment.user.age}}대</b>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="post-description"> 
+                            <p>{{comment.text}}</p>
+                        </div>
+
+                        <div class="like-dislike">
+                            {% if user.is_authenticated %}
+                                {% if request.user != comment.user %}
+                                    <a href="{% url 'communityCommentLikeUp' community.id  comment.id%}" class="like">
+                                        <img src="{%static 'img/like.png' %}" width="20px" height="20px"/>
+                                        <span>&nbsp{{comment.like}}&nbsp&nbsp&nbsp&nbsp</span>
+                                    </a>
+                                    <a href="{% url 'communityCommentDisLikeUp' community.id comment.id %}" class="dislike">
+                                        <img src="{%static 'img/dislike.png' %}" width="20px" height="20px"/>
+                                        <span>&nbsp{{comment.dis_like}}</span>
+                                    </a>
+                                    {% if request.user == community.user and not community.selected %}
+                                        <button class="selectbtn" onclick="location.href='{% url 'communitySelect' comment.id %}'">V 채택</button>
+                                    {% endif %}
+                                {% else %}
+                                    <img src="{%static 'img/like.png' %}" width="20px" height="20px"/>
+                                    <span>&nbsp{{comment.like}}&nbsp&nbsp&nbsp&nbsp</span>
+                                    <img src="{%static 'img/dislike.png' %}" width="20px" height="20px"/>
+                                    <span>&nbsp{{comment.dis_like}}</span>
+                                {% endif %}
+                            {% endif %}
+                            {% if not user.is_authenticated %}
+                                <a href="#loginmodal" rel="modal:open" class="like">
+                                    <img src="{%static 'img/like.png' %}" width="20px" height="20px"/>
+                                    <span>&nbsp{{comment.like}}&nbsp&nbsp&nbsp&nbsp</span>
+                                </a>
+                                <a href="#loginmodal" rel="modal:open" class="dislike">
+                                    <img src="{%static 'img/dislike.png' %}" width="20px" height="20px"/>
+                                    <span>&nbsp{{comment.dis_like}}</span>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
+{% endblock %}

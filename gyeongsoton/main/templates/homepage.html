@@ -1,0 +1,162 @@
+{% extends 'base.html' %}{% load static %}{% block extrahead %}
+{% endblock %} {% block content %}
+
+<head>
+    <title>homepage</title>
+    <link rel="stylesheet" href='{% static "css/homepage.css" %}'>
+    <script src="https://kit.fontawesome.com/740a1d0d1d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <main class="main">
+        <section class="firstPage">
+            <div class="firstPageTitle">
+                <span>모두를 잇는다.</span><br>
+                <span class="EEEM">이음</span>
+            </div>
+            <img class="firstPageImg" src="{% static 'img/connection3.png' %}">
+        <!-- <div class="description">‘사회적 거리두기도 완화되는데, 당신의 세대간 거리두기는 어떠신가요?’</div>
+        <div class="description">‘여러 상황에서 어떤 말과 행동을 해야 할지 모르겠나요?’</div>
+        <div class="description">‘젊은 세대의 말과 최신 트렌드를 따라가기 힘드신가요?’</div> -->
+        </section>
+        <section class="welcome">
+            <a  class="question" href="https://www.seoul.co.kr/news/newsView.php?id=20190927028001">[서울 신문] 국민 85% “사회갈등 심각”…세대·계층·젠더 대립 심화</a>
+            <a  class="question" href="https://www.idaegu.co.kr/news/articleView.html?idxno=298302">[대구 신문] 스마트시대, 노년층은 아직도 스마트폰이 무섭다</a>
+            <div class="question">.</div>
+            <div class="question">.</div>
+            <div class="question">.</div>
+            <div class="question">‘사회적 거리두기도 완화되는데, 당신의 세대간 거리두기는 어떠신가요?’</div>
+            <div class="question">‘여러 상황에서 어떤 말과 행동을 해야 할지 모르겠나요?’</div>
+            <div class="question">‘젊은 세대의 말과 최신 트렌드를 따라가기 힘드신가요?’</div>
+            <div class="question">.</div>
+            <div class="question">.</div>
+            <div class="question">.</div>
+            <div class="question">‘이음’ 에서 답을 찾으세요!</div>
+        </section>
+        <section class="mainPage community" id="sec1">
+            <img src="{% static 'img/community.png' %}">
+            <div class="text">
+                <div class="title">‘커뮤니티’</div>
+                <div class="description">자유롭게 소통할 수 있는 페이지입니다.</div>
+                <div class="description">회원가입 후 글을 쓰고 댓글을 달아보세요!</div>
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                    <defs>
+                        <filter id="gooey">
+                            <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
+                            <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="highContrastGraphic" />
+                            <feComposite in="SourceGraphic" in2="highContrastGraphic" operator="atop" />
+                        </filter>
+                    </defs>
+                </svg>
+                <form class="goto" action="{% url 'community' %}">
+                    <button id="gooey-button">
+                        커뮤니티 바로가기
+                        <span class="bubbles">
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                        </span>
+                    </button>
+                </form>
+            </div>
+        </section>
+        <section class="mainPage manner" id="sec2">
+            <img src="{% static 'img/respect.png' %}">
+            <div class="text">
+                <div class="title">‘매너를 지켜쥬’</div>
+                <div class="description">다양한 상황에 어떻게 예의를 지키며 대화할 수 있는지의</div>
+                <div class="description">틀을 제시해 주는 페이지입니다.</div>
+                <div class="description">회원가입 후 글을 써보세요!</div>
+                <form class="goto" action="{% url 'manner' %}">
+                    <button id="gooey-button">
+                        매너를 지켜쥬 바로가기
+                        <span class="bubbles">
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                        </span>
+                    </button>
+                </form>
+            </div>
+        </section>
+        <section class="mainPage trend" id="sec3">
+            <img src="{% static 'img/trend.png' %}">
+            <div class="text">
+                <div class="title">‘신문물 소개’</div>
+                <div class="description">최신 문물을 소개하는 페이지 입니다.</div>
+                <div class="description">회원가입 후 글을 쓰며 새로운 문물들을 공유해요!</div>
+                <form class="goto" action="{% url 'newproduct' %}">
+                    <button id="gooey-button">
+                        신문물 바로가기
+                        <span class="bubbles">
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                        </span>
+                    </button>
+                </form>
+            </div>
+        </section>
+        <section class="mainPage newterm" id="sec4">
+            <img src="{% static 'img/quiz.png' %}">
+            <div class="text">
+                <div class="title">‘신조어 능력고사’</div>
+                <div class="description">신조어를 알기 위한 재밌는 게임입니다.</div>
+                <div class="description">당신은 몇개까지 알 수 있을까요?</div>
+                <form class="goto" action="{% url 'newterms' %}">
+                    <button id="gooey-button">
+                        신조어 바로가기
+                        <span class="bubbles">
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                        </span>
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <div class="arrow">
+        <span>눌러주세요!</span>
+        <i class="fas fa-arrow-down"></i>
+    </div>
+    <div class="gotoContent">
+        <a href="#sec1">커뮤니티</a>
+        <a href="#sec2">매너를 지켜쥬</a>
+        <a href="#sec3">신문물 소개</a>
+        <a href="#sec4">신조어 능력고사</a>
+    </div>
+
+
+</body>
+
+</html>
+
+{% endblock %}

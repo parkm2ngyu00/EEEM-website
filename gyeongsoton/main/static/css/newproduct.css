@@ -1,0 +1,145 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:600&display=swap");
+
+div [class^="col-"] {
+  padding-left: 20px;
+}
+
+.ne a {
+  color: skyblue;
+}
+
+.productCard {
+  float: left;
+  margin-left: 20px;
+  margin-right: 20px;
+  transition: 0.5s;
+  cursor: pointer;
+  height: 350px;
+  width: 215px;
+  border-radius: 20px;
+}
+.productCard-title {
+  font-size: 22px;
+  font-weight: 5px;
+  transition: 1s;
+  cursor: pointer;
+}
+.productCard-title i {
+  font-size: 15px;
+  transition: 1s;
+  cursor: pointer;
+  color: #95c0f8;
+}
+.productCard-title i:hover {
+  transform: scale(1.25) rotate(100deg);
+  color: #18d4ca;
+}
+.productCard:hover {
+  transform: scale(1.05);
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+}
+.productCard-text {
+  height: 100px;
+}
+
+.productCard::before,
+.productCard::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: scale3d(0, 0, 1);
+  transition: transform 0.3s ease-out 0s;
+  background: rgba(255, 255, 255, 0.1);
+  content: "";
+  pointer-events: none;
+}
+.productCard::before {
+  transform-origin: left top;
+}
+.productCard::after {
+  transform-origin: right bottom;
+}
+.productCard:hover::before,
+.productCard:hover::after,
+.productCard:focus::before,
+.productCard:focus::after {
+  transform: scale3d(1, 1, 1);
+}
+
+.search {
+  position: absolute;
+  top: 90px;
+  right: 100px;
+}
+
+.search__box {
+  width: 110px;
+  height: 30px;
+  border: 1px solid white;
+  border-radius: 10px;
+  margin-right: 5px;
+}
+
+.search__box:focus {
+  outline: none;
+}
+
+.find__btn {
+  width: 70px;
+  height: 35px;
+  border: none;
+  cursor: pointer;
+  color: black;
+  background-color: #f0d4f5;
+  font-weight: bold;
+  border-radius: 10px;
+  font-size: 17px;
+}
+
+.writeText {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 90px;
+  right: 20px;
+  width: 70px;
+  height: 35px;
+  border: none;
+  cursor: pointer;
+  color: black;
+  background-color: #f0d4f5;
+  font-weight: bold;
+  font-size: 17px;
+  border-radius: 10px;
+}
+
+.info {
+  padding-top: 80px;
+  display: block;
+  font-size: 20px;
+  text-align: center;
+  /* margin-bottom: 20px; */
+}
+
+.order {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 90px;
+  left: 40px;
+  width: 135px;
+  height: 45px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #9370db;
+  cursor: pointer;
+  color: black;
+  background-color: #ffffff;
+  font-weight: bold;
+  font-size: 17px;
+  border-radius: 15px;
+}

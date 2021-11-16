@@ -1,0 +1,29 @@
+{% extends 'base.html' %}{% load static %}{% block extrahead %} {% endblock %}
+{% block content %}
+
+<head>
+  <link rel="stylesheet" href='{% static "css/newtermQuiz.css" %}' />
+  <title>newtermQuiz</title>
+</head>
+
+<body>
+  <main>
+    <div class="paper">
+      <div class="point">{{newtermCount}} / {{newtermsum}}</div>
+      <div class="questionFont">Q. 다음 신조어의 의미를 고르시오.</div>
+      <div style="display: flex; flex-direction: column; align-items: center">
+        <div class="newtermBox">{{term.question}}</div>
+      </div>
+      <br /><br /><br /><br /><br />
+      <div class="answerBox">
+        <a class="answer" href="{%url 'newtermButton1' term.id %}">①</a>
+        <span>{{choice_1}}</span>
+        <br /><br />
+        <a class="answer" href="{%url 'newtermButton2' term.id %}">②</a>
+        <span>{{choice_2}}</span>
+      </div>
+    </div>
+  </main>
+</body>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}{% load static %}{% block extrahead %} {% endblock %}
+{% block content %}
+
+<head>
+  <link rel="stylesheet" href="{% static 'css/certification.css' %}" />
+</head>
+
+<body style="background-color: rgb(242, 240, 248);">
+  <div class="main-container">
+    <div class="container" id="container">
+      <div class="form-container sign-in-container">
+        <form action="{% url 'addCertification' %}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <span style="font-weight: bold; font-size: 30px; text-align: center; margin-top:30px;">직업 인증하기</span>
+          <br /><br />
+          <form action="">
+          <input type="text" class="form-element" id="formGroupExampleInput" placeholder="직업을 입력하세요" name="job"></div>
+          <input style="width: 225px; font-size: 15px; height: 100%;margin-left:100px;" type="file" name="image"/>
+          <br>
+          <div class="addCertifacation">
+          <button type="submit">인증받기</button></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+<!--
+  <div class="title">직업 인증하기</div>
+  <div class="container">
+    <form
+      action="{%url 'addCertification' %}"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      {%csrf_token%}
+
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="formGroupExampleInput"
+          placeholder="직업을 입력하세요"
+          name="job"
+        />
+      </div>
+      <input
+        style="width: 225px; font-size: 15px; height: 100%"
+        type="file"
+        name="image"
+      />
+      <button class="addCertifacation" type="submit">인증받기</button>
+    </form>
+  </div>
+
+  
+-->
+{% endblock %}

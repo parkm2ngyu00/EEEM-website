@@ -1,0 +1,165 @@
+button {
+  border-radius: 20px;
+  border: 1px solid #88aed0;
+  background-color: #88aed0;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+button:focus {
+  outline: none;
+}
+
+button.ghost {
+  background-color: transparent;
+  border-color: #ffffff;
+}
+
+form {
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 50px;
+  height: 100%;
+  text-align: center;
+}
+
+input {
+  background-color: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
+}
+
+.failed-login {
+  font-size: 12px;
+  color: red;
+}
+
+.main-container {
+  padding-top: 200px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.container {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  position: relative;
+  overflow: hidden;
+  width: 768px;
+  max-width: 100%;
+  min-height: 300px;
+}
+
+.form-container {
+  text-align: center;
+  transition: all 0.6s ease-in-out;
+}
+
+.sign-up-container {
+  left: 0;
+  width: 50%;
+  opacity: 0;
+}
+
+.container .sign-up-container {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+  animation: show 0.6s;
+}
+
+@keyframes show {
+  0%,
+  49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}
+
+.overlay-container {
+  position: absolute;
+  top: 0;
+  right: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 100;
+}
+
+.overlay {
+  background: -webkit-linear-gradient(to left, #88aed0, #88aed0);
+  background: linear-gradient(to left, #88aed0, #88aed0);
+  background-size: cover;
+  background-position: 0 0;
+  color: #ffffff;
+  position: relative;
+  height: 100%;
+  width: 200%;
+}
+
+.overlay-panel {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 40px;
+  text-align: center;
+  top: 0;
+  height: 100%;
+  width: 50%;
+}
+
+.error-field {
+  font-size: 12px;
+  color: red;
+}
+
+select {
+  width: 210px;
+  height: 30px;
+  border: 1px solid #4b9ae0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin-bottom: 7px;
+  font-size: 15px;
+  text-align: center;
+}
+
+.form-element {
+  width: 80%;
+}
+
+.addCertifacation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 20px;
+}

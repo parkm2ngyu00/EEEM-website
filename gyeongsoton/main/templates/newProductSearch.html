@@ -1,0 +1,56 @@
+{% extends 'base.html' %}{% load static %}{% block extrahead %} {% endblock %}
+{% block content %}
+
+<head>
+  <link rel="stylesheet" href='{% static "css/newproduct.css" %}' />
+  <title>newproduct</title>
+</head>
+
+<body style="background-color: rgb(242, 240, 248)">
+  <form method="get" class="search" action="{% url 'newproductSearch' %}">
+    <input
+      type="search"
+      class="search__box"
+      placeholder="신문물 검색"
+      name="kw"
+    />
+    <!-- <input type="search" class="search__box" placeholder="#누구에게" name="kw2"> -->
+    <button type="submit" class="find__btn">검색</button>
+    <!-- <button class="writeText">글쓰기</button> -->
+  </form>
+  {% if user.is_authenticated %}
+  <a href="{%url 'addProduct' %}" class="writeText">글쓰기</a>
+  {% else %}
+  <a href="#loginmodal" class="writeText" rel="modal:open">글쓰기</a>
+  {% endif %}
+  <div class="container mt-2">
+    <div class="row" style="padding-top: 40px">
+      {% for product in result.all %}
+      <div class="col-md-3 col-sm-6">
+        <a href="{%url 'newproductDetail' product.id %}">
+          <div class="productCard productCard-block">
+            <h4 class="productCard-title text-right">
+              <i class="material-icons">상품</i>
+            </h4>
+            <div><img src="{{product.image.url}}" /></div>
+            <!--<img src="https://static.pexels.com/photos/7096/people-woman-coffee-meeting.jpg" alt="Photo of sunset"> -->
+            <!--<div>{{product.img}}</div>-->
+            <h5 class="productCard-title mt-3 mb-3">{{product.productName}}</h5>
+            <div style="text-align: right; line-height: 1rem">
+              - 작성자 {{product.user.nickname}}
+            </div>
+            <p class="productCard-text" style="line-height: 1.5rem">
+              {{product}}
+            </p>
+            <div style="text-align: right; margin-top: 20px">
+              {{product.date|date:'Y-m-d fa' }} ❤{{product.like}}
+            </div>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+
+{% endblock %}

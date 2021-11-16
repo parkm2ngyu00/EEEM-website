@@ -1,0 +1,50 @@
+{% extends 'base.html' %}{% load static %}{% block extrahead %} {% endblock %}
+{% block content %}
+
+<head>
+  <link rel="stylesheet" href='{% static "css/addProduct.css" %}' />
+  <title>addProduct</title>
+</head>
+
+<body style="background-color: rgb(242, 240, 248)">
+  <div class="titleBox">신문물 글쓰기</div>
+  <div style="margin-left: 100px">
+    <form
+      action="{% url 'productCreate' %}"
+      enctype="multipart/form-data"
+      method="POST"
+    >
+      {% csrf_token %}
+      <div class="box" style="padding-top: 50px">
+        <input
+          type="text"
+          name="productName"
+          id="productName"
+          style="width: 225px"
+          placeholder="제목을 입력하세요."
+          required
+        />
+      </div>
+      <div class="box">
+        <textarea
+          class="form-control"
+          name="productText"
+          id="productText"
+          cols="90"
+          rows="15"
+          placeholder="내용을 입력하세요."
+          required
+        ></textarea>
+      </div>
+      <input
+        style="width: 225px; font-size: 15px; height: 100%"
+        type="file"
+        name="image"
+      />
+      <br /><br /><br />
+      <button class="submitButton" type="submit">글쓰기</button>
+    </form>
+  </div>
+</body>
+
+{% endblock %}

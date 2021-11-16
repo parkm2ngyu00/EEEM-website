@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:600&display=swap");
+.titleBox {
+  font-size: 20px;
+  padding-top: 70px;
+  margin-left: 100px;
+  color: #298adf;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input {
+  height: 30px;
+  border: 1px solid black;
+}
+
+input:focus {
+  border: 1px solid skyblue;
+  outline: 1px solid skyblue;
+  border-radius: 5px;
+}
+
+textarea {
+  border: 1px solid black;
+}
+
+textarea:focus {
+  border: 1px solid skyblue;
+  outline: 1px solid skyblue;
+  border-radius: 5px;
+}
+
+.box {
+  margin-bottom: 30px;
+}
+
+.submitButton {
+  position: relative;
+  width: 100px;
+  height: 35px;
+  font-size: 19px;
+  background-color: #88aed0;
+  color: whitesmoke;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+}
+.form-control {
+  font-family: "Noto Sans KR", sans-serif;
+}

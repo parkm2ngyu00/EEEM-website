@@ -1,0 +1,16 @@
+{% extends 'base.html' %}{% load static %}{% block extrahead %}
+
+{% endblock %} {% block content %}
+
+<head>
+  <link rel="stylesheet" href='{% static "css/newproductDetail.css" %}'>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/9452825322.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div style="padding-top: 50px;">
+        {{productDetail.user.nickname}}
+    </div>
+</body>
+</html>
+{% endblock %}

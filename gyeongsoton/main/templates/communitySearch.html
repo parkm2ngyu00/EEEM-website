@@ -1,0 +1,59 @@
+{% extends 'base.html' %}{% load static %}{% block extrahead %}
+
+{% endblock %} {% block content %}
+
+<head>
+  <link rel="stylesheet" href='{% static "css/community.css" %}'>
+  <title></title>
+</head>
+
+<body>
+  <span class="info">'{{query}}'에 대한 검색결과</span>
+  <form method="get" class="search" action="{% url 'communitysearch' %}">
+    <input type="search" class="search__box" placeholder="제목으로 검색" name="kw">
+    <!-- <input type="search" class="search__box" placeholder="#누구에게" name="kw2"> -->
+    <button type="submit" class="find__btn">검색</button>
+    <!-- <button class="writeText">글쓰기</button> -->
+  </form>
+  <div class="row d-flex justify-content-center mt-100 mb-100">
+    <div class="col-lg-6">
+        <div class="card">
+          <!-- <span class="info">자유롭게 소통할 수 있는 페이지입니다.<br><br>회원가입 후 글을 쓰고 댓글을 달아보세요😃</span> -->
+            <div class="comment-widgets">
+              {% for result in result.all %}
+              <a href="{%url 'communityDetail' result.id %}">
+                <div class="d-flex flex-row comment-row m-t-0">
+                  <div class="userimg">
+                    <img src="{{result.user.profile.url}}" style="border-radius: 70%" alt="user" width="45px" class="rounded-circle">
+                  </div>
+                  <div class="comment-text w-100">
+                      <h6 class="font-medium" style="margin-bottom: 9px;">{{result.user.nickname}}
+                      <span class="sex">{{result.user.sex}}</span>
+                      {{result.user.age}}살
+                      </h6>
+                      <span class="m-b-10 d-block">{{result.title}}</span><br>
+                      <span style="color:gray; font-size: 14px;">{{result.text}}</span>
+                      <div class="comment-footer"> <span class="text-muted float-right" style="color:gray;font-size:14px;">{{result.date|date:'Y-m-d fa' }}</span></div>
+                  </div>
+                </div>
+              </a>
+
+              {% empty %}
+              <span class="info">'{{query}}' 에 대한 검색 결과가 없습니다.</span>
+
+              {% endfor %}
+            </div>
+        </div>
+        {% if user.is_authenticated %}
+          <div class="addCommunity">
+            <a href="{%url 'toaddCommunitypage' %}">글 쓰기</a>
+          </div>
+        {% else %}
+          <div class="addCommunity">
+            <a href="#loginmodal" rel="modal:open">글 쓰기</a>
+        {% endif %}
+    </div>
+  </div>
+</body>
+
+{% endblock %}

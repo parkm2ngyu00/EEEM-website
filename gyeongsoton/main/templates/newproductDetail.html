@@ -1,0 +1,61 @@
+{% extends 'base.html' %}{% load static %}{% block extrahead %} {% endblock %}
+{% block content %}
+
+<head>
+  <link rel="stylesheet" href='{% static "css/newproductDetail.css" %}' />
+  <link
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+    crossorigin="anonymous"
+  />
+  <script
+    src="https://kit.fontawesome.com/9452825322.js"
+    crossorigin="anonymous"
+  ></script>
+</head>
+
+<body style="background-color: rgb(242, 240, 248)">
+  <main>
+    {% if request.user == productDetail.user %}
+    <div class="retouch">
+      <a href="{% url 'toEditnewproduct' productDetail.id %}">수정</a>
+      <a href="{% url 'newproductdelete' productDetail.id %}">삭제</a>
+    </div>
+    {% endif %}
+    <div class="titleFont">{{productDetail.productName}}</div>
+    <div class="titleLine"></div>
+    <img
+      src="{{productDetail.image.url}}"
+      style="height: 370px; width: 550px; margin: 20px 0px 0px 70px"
+    />
+    <div class="content">{{productDetail.productText}}</div>
+    <div style="margin-left: 90px; width: 60px">
+      <label class="like">
+        <button
+          onclick="location.href = '{% url 'productLikeUp' productDetail.id %}'"
+          style="visibility: hidden"
+        ></button>
+        <div class="hearth">
+          <br />
+          <span style="margin-left: 70px">{{productDetail.like}}</span>
+        </div>
+      </label>
+    </div>
+
+    <!--<section>
+    <h1>{{productDetail.productName}}</h1>
+    <div class="content">
+      <p>{{productDetail.productText}}</p>
+      <button
+        onclick="location.href = '{% url 'productLikeUp' productDetail.id %}'"
+      >
+        ❤ {{productDetail.like}}
+      </button>
+    </div>
+    <div class="img"><img src="{{productDetail.image.url}}" /></div>
+  </section>
+-->
+  </main>
+</body>
+{% endblock %}

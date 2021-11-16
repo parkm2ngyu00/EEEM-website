@@ -1,0 +1,70 @@
+body {
+  background-color: rgb(242, 240, 248);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  padding-top: 80px;
+  font-size: 20px;
+  color: #298adf;
+}
+
+.titleandhashtag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.textInput {
+  width: 900px;
+  height: 30px;
+  border: 1px solid black;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.box {
+  margin-bottom: 30px;
+  margin-left: 10px;
+}
+
+.hashtag {
+  display: flex;
+}
+
+.hashtag input {
+  width: 100px;
+  height: 30px;
+  margin-left: 10px;
+  border: 1px solid black;
+}
+
+.submitButton {
+  position: relative;
+  width: 100px;
+  height: 35px;
+  font-size: 19px;
+  background-color: #88aed0;
+  color: whitesmoke;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+input:focus {
+  outline: 1px solid skyblue;
+  border: 1px solid skyblue;
+  border-radius: 5px;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+textarea:focus {
+  outline: 1px solid skyblue;
+  border: 1px solid skyblue;
+  border-radius: 5px;
+}
+
+.form-control {
+  font-family: "Noto Sans KR", sans-serif;
+}

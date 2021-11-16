@@ -1,0 +1,55 @@
+{% extends 'base.html' %}{% load static %}{% block extrahead %}
+{% endblock %} {% block content %}
+<link rel="stylesheet" href='{% static "css/mannersDetail.css" %}'>
+<body>
+
+  <div class="mannersDetail__box">
+    <h3>제목 : {{mannersdetail.text}}</h3>
+    <div class="mannersDetail__box--situation">
+      <p>{{mannersdetail.hashtag_situation}}</p>
+    </div>
+    <div class="mannersDetail__box--tag">
+      <div class="mannersDetail__box--tag--hashtag">
+        <span>누가 : {{mannersdetail.hashtag_me}}</span>
+        <span>누구에게 : {{mannersdetail.hashtag_you}}</span>
+      </div>
+      <div class="mannersDetail__box--tag--like">
+        {% if user.is_authenticated %}
+          {% if mannersdetail.user != request.user %}
+            <button onclick="location.href = '{% url 'mannerLikeUp' mannersdetail.id %}'"><img src="{%static 'img/like.png' %}" width="20px" height="20px"/> : {{mannersdetail.like}}</button>
+            <button onclick="location.href = '{% url 'mannerDisLikeUp' mannersdetail.id %}'"><img src="{%static 'img/dislike.png' %}" width="20px" height="20px"/> : {{mannersdetail.dis_like}}</button>
+            {% else %}
+            <button><img src="{%static 'img/like.png' %}" width="20px" height="20px"/> : {{mannersdetail.like}}</button>
+            <button><img src="{%static 'img/dislike.png' %}" width="20px" height="20px"/> : {{mannersdetail.dis_like}}</button>
+            {% endif %}
+        {% else %}
+          <a href = '#loginmodal'" rel="modal:open" style="background-color: rgb(206, 191, 236);padding:10px;margin:0px 5px;border-radius: 5px;"><img src="{%static 'img/like.png' %}" width="20px" height="20px"/> : {{mannersdetail.like}}</a>
+          <a href = '#loginmodal'" rel="modal:open" style="background-color: rgb(206, 191, 236);padding:10px;margin:0px 5px;border-radius: 5px;"><img src="{%static 'img/dislike.png' %}" width="20px" height="20px"/> : {{mannersdetail.dis_like}}</a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="profile" style="border-color:rgb(206, 191, 236);">
+      <div>
+        <img src="{{mannersdetail.user.profile.url}}" style="border-radius: 70%" alt="user" width="50px" class="rounded-circle">
+      </div>
+      <div>
+        <div>
+          닉네임 : {{mannersdetail.user.nickname}}
+        </div>
+      </div>
+    </div>
+    <div class="date">
+      작성일자 : {{mannersdetail.date|date:'Y-m-d fa' }}
+    </div>
+    {% if request.user == mannersdetail.user %}
+    <div class="retouch">
+        <a href="{% url 'toEditMannerpage' mannersdetail.id %}">수정</a>
+        <a href="{% url 'mannerdelete' mannersdetail.id %}">삭제</a>
+    </div>
+    {% endif %}
+  </div>
+  <script src="https://kit.fontawesome.com/740a1d0d1d.js" crossorigin="anonymous"></script>
+</body>
+</html>
+
+{% endblock %}

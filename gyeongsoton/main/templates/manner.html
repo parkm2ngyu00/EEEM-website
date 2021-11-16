@@ -1,0 +1,172 @@
+{% extends 'base.html' %}{% load static %}{% block extrahead %}
+{% endblock %} {% block content %}
+
+<link rel="stylesheet" href='{% static "css/manner.css" %}'>
+<link rel="stylesheet" href='{% static "css/reset.css" %}'>
+<body>
+  <main class="main__screen">
+    <div class="info"
+      >매너를 지켜쥬 입니다.<br /><br />회원가입 후 매너를 써주세요!😊</div
+    >
+    <form method="get" class="search" action="{% url 'search' %}">
+      <input type="search" class="search__box" placeholder="#해시태그 검색" name="kw">
+      <!-- <input type="search" class="search__box" placeholder="#누구에게" name="kw2"> -->
+      <button type="submit" class="find__btn">검색</button>
+    </form>
+    <a class="order" href="{% url 'mannerOrder' %}">좋아요순 정렬</a>
+  
+    {% if user.is_authenticated %}
+    <a href="#certificationModal" class="writeText" rel="modal:open">글쓰기</a>
+    {% else %}
+    <a href="#loginmodal" class="writeText" rel="modal:open">글쓰기</a>
+    {% endif %}
+    {% for m in manner.all %}
+      {% if not m.secret %}
+        <a class="manner__box" href="{%url 'mannersDetail' m.id %}">
+          <div class="profile">
+            <div class="manner__user">
+              {% if m.user.profile %}
+              <img src="{{m.user.profile.url}}" alt="user" width="60px" class="rounded-circle">
+              {% endif %}  
+              <div>{{m.user.sex}}, {{m.user.age}}대</div>
+            </div>
+            <div class="manner__main">
+              <div class="manner__text">
+                제목 : {{m.text}}
+              </div>
+              <div class="manner__hashtag">
+                <div class="manner__hashtag--detail">누가:{{m.hashtag_me}}</div>
+                <div class="manner__hashtag--detail">누구에게:{{m.hashtag_you}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="mannerInfo">
+            <div class="mannerthumbs">
+              <img src="{%static 'img/like.png' %}" width="20px" height="20px"/> : {{m.like}}
+              <img src="{%static 'img/dislike.png' %}" width="20px" height="20px"/> : {{m.dis_like}}
+            </div>
+            <div class="date">{{m.date|date:'Y-m-d fa' }}</div>
+            <div>작성자 : {{m.user.nickname}}</div>
+          </div>
+        </a>
+      {% endif %}
+
+      {% if m.secret %}
+        {% if m.user != request.user %}
+          {% if request.user.coin >= 3 %}
+          <a href="#coinModal" class="manner__box--secret" rel="modal:open">
+          {% elif not user.is_authenticated %}
+          <a href="#loginmodal" class="manner__box--secret" rel="modal:open">
+          {% else %}
+          <a href="#nocoinModal" class="manner__box--secret" rel="modal:open">
+          {% endif %}
+            <div class="profile">
+              <div class="manner__user">
+                {% if m.user.profile %}
+                <img src="{{m.user.profile.url}}" alt="user" width="60px" class="rounded-circle">
+                {% endif %}  
+                <div>{{m.user.sex}}, {{m.user.age}}대</div>
+              </div>
+              <div class="manner__main">
+                <div class="manner__text">
+                  제목 : {{m.text}}
+                </div>
+                <div class="manner__hashtag">
+                  <div class="manner__hashtag--detail">누가:{{m.hashtag_me}}</div>
+                  <div class="manner__hashtag--detail">누구에게:{{m.hashtag_you}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="mannerInfo">
+              <div class="mannerthumbs">
+                <img src="{%static 'img/like.png' %}" width="20px" height="20px"/> : {{m.like}}
+                <img src="{%static 'img/dislike.png' %}" width="20px" height="20px"/> : {{m.dis_like}}
+              </div>
+              <div class="date">{{m.date|date:'Y-m-d fa' }}</div>
+              <div>작성자 : {{m.user.nickname}}</div>
+            </div>
+            <div class="medal">
+              <img src="{% static 'img/medal.png' %}" width="40px" height="40px">
+            </div>
+          </a>
+        {% else %} <!--인증 완료한 내가 쓴 글-->
+          <a class="manner__box--secret" href="{%url 'mannersDetail' m.id %}">
+            <div class="profile">
+              <div class="manner__user">
+                {% if m.user.profile %}
+                <img src="{{m.user.profile.url}}" alt="user" width="60px" class="rounded-circle">
+                {% endif %}  
+                <div>{{m.user.sex}}, {{m.user.age}}대</div>
+              </div>
+              <div class="manner__main">
+                <div class="manner__text">
+                  제목 : {{m.text}}
+                </div>
+                <div class="manner__hashtag">
+                  <div class="manner__hashtag--detail">누가:{{m.hashtag_me}}</div>
+                  <div class="manner__hashtag--detail">누구에게:{{m.hashtag_you}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="mannerInfo">
+              <div class="mannerthumbs">
+                <img src="{%static 'img/like.png' %}" width="20px" height="20px"/> : {{m.like}}
+                <img src="{%static 'img/dislike.png' %}" width="20px" height="20px"/> : {{m.dis_like}}
+              </div>
+              <div class="date">{{m.date|date:'Y-m-d fa' }}</div>
+              <div>작성자 : {{m.user.nickname}}</div>
+            </div>
+            <div class="medal">
+              <img src="{% static 'img/medal.png' %} " width="40px" height="40px">
+            </div>
+          </a>
+        {% endif %}
+      {% endif %}
+      {% if user.is_authenticated %}
+        <div id="coinModal" class="modal">
+          <div>인증 글을 보려면 코인 3개가 필요합니다.</div>
+          <div>코인을 사용 하시겠습니까?</div>
+          <div class="actionbutton">
+            <form action="{% url 'minuscoin' m.id %}">
+              <button class="tologinbtn" type="submit" style="margin-right:10px;">네</button>
+            </form>
+            <form action="{% url 'manner' %}">
+              <button class="tologinbtn" type="submit">아니오</button>
+            </form>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+    
+  <div id="nocoinModal" class="modal">
+    <div>인증 글을 보려면 코인 3개가 필요합니다.</div>
+    <div>코인이 부족합니다. (현재 코인 : {{request.user.coin}}개)</div>
+  </div>
+
+  <div id="certificationModal" class="modal">
+    {% if user_certification is None %}
+      <span style="font-size:18px;">본인의 직업을 먼저 인증하고<br><br>글을 쓰면 20 코인을 선물로 드립니다✨</span>  
+      <br><br><br>
+      <button class="tocertificatebtn" style="margin-right:10px;" onclick="location.href='{% url 'toCertification' %}'">인증하고 글쓰기</button>
+      <button class="tocertificatebtn" onclick="location.href='{%url 'addManner' %}'">글쓰기</button>
+    {% else %}
+      {% if user_certification.certified %}
+        <span style="font-size:18px;">인증이 완료한 직업으로 글을 써보세요</span>
+        <br><br>
+        <button class="tocertificatebtn" style="margin-right:10px;" onclick="location.href='{%url 'addManner' %}'">"{{user_certification.job}}"로 글쓰기</button>
+        <button class="tocertificatebtn" onclick="location.href='{%url 'toCertification' %}'">다른 직업으로 인증하기</button>
+        <button class="tocertificatebtn" onclick="location.href='{%url 'stopCertification' %}'">인증 취소하기</button>
+      {% else %}  
+        <span style="font-size:18px;">인증을 기다리고 있습니다.</span>  
+        <br><br>
+        <button class="tocertificatebtn" onclick="location.href='{%url 'addManner' %}'">글쓰기</button>
+      {% endif %}
+    {% endif %}
+  </div>
+
+
+  </main>
+  <script src="https://kit.fontawesome.com/740a1d0d1d.js" crossorigin="anonymous"></script>
+</body>
+</html>
+{% endblock %}

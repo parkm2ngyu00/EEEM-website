@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap");
+main {
+  padding: 60px 50px 0px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.te a {
+  color: skyblue;
+}
+
+.paper {
+  margin-top: 20px;
+  height: 85vh;
+  width: 900px;
+  border-style: solid;
+  background-color: #d8d7d7;
+  border-style: double;
+  border-color: rgb(36, 20, 3);
+  border-width: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titleFont {
+  text-align: center;
+  font-size: 35px;
+  font-family: "Noto Serif KR", serif;
+  font-weight: 15px;
+}
+
+.contentFont {
+  text-align: center;
+  font-size: 25px;
+  font-family: "Noto Serif KR", serif;
+  font-weight: 3px;
+}
+
+.container {
+  width: 1.2px;
+  height: 1.2px;
+  padding: 2rem;
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  bottom: 40px;
+  right: 30px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1),
+    -10px -10px 10px rgba(255, 255, 255, 0.6);
+}
+
+.container .fas {
+  place-items: center;
+  font-size: 2rem;
+  color: gray;
+}
+
+.container:active {
+  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.1),
+    inset -10px -10px 10px rgba(255, 255, 255, 0.6);
+}
+
+.container:active .fas {
+  color: rgb(243, 187, 66);
+}
+
+.contentBox {
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  margin: 25px 15px 0px 0px;
+  padding: 10px 10px 10px 10px;
+  width: 700px;
+  display: inline-block;
+  align-items: center;
+  text-align: center;
+}

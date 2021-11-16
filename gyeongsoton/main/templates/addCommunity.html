@@ -1,0 +1,42 @@
+{% extends 'base.html' %}{% load static %}{% block extrahead %} {% endblock %}
+{% block content %}
+
+<head>
+  <link rel="stylesheet" href="{% static 'css/addcommunity.css' %}" />
+</head>
+
+<body>
+  <div class="title">커뮤니티 글쓰기</div>
+  <div class="container">
+    <form
+      action="{%url 'addCommunity' %}"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      {%csrf_token%}
+
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="formGroupExampleInput"
+          placeholder="제목을 입력하세요"
+          name="communitytitle"
+        />
+
+        <div class="form-floating">
+          <textarea
+            class="form-control"
+            placeholder="내용을 입력하세요"
+            id="floatingTextarea2"
+            name="communitytext"
+            cols="90"
+            rows="15"
+          ></textarea>
+      </div>
+  
+      <button class="submitButton" type="submit">글쓰기</button>
+    </form>
+  </div>
+</body>
+{% endblock %}

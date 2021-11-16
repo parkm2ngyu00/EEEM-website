@@ -1,0 +1,57 @@
+{% extends 'base.html' %}{% load static %}{% block extrahead %}
+
+{% endblock %} {% block content %}
+
+<head>
+  <link rel="stylesheet" href='{% static "css/community.css" %}'>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"></link>
+  <title></title>
+</head>
+
+<body>
+
+  <form method="get" class="search" action="{% url 'communitysearch' %}">
+    <input type="search" class="search__box" placeholder="제목으로 검색" name="kw">
+    <!-- <input type="search" class="search__box" placeholder="#누구에게" name="kw2"> -->
+    <button type="submit" class="find__btn">검색</button>
+    <!-- <button class="writeText">글쓰기</button> -->
+  </form>
+  <div class="row d-flex justify-content-center mt-100 mb-100">
+    <div class="col-lg-6">
+        <div class="card">
+          <span class="info">자유롭게 소통할 수 있는 페이지입니다.<br><br>회원가입 후 글을 쓰고 댓글을 달아보세요😃</span>
+            <div class="comment-widgets">
+              {% for community in communities.all %}
+              <a href="{%url 'communityDetail' community.id %}">
+                <div class="d-flex flex-row comment-row m-t-0">
+                  <div class="userimg">
+                    <img src="{{community.user.profile.url}}" style="border-radius: 70%" alt="user" width="45px" class="rounded-circle">
+                  </div>
+                  <div class="comment-text w-100">
+                      <h6 class="font-medium" style="margin-bottom: 9px;">{{community.user.nickname}}
+                      <span class="sex">{{community.user.sex}}</span>
+                      {{community.user.age}}대
+                      </h6>
+                      <span class="m-b-10 d-block">{{community.title}}</span><br>
+                      <span style="color:gray; font-size: 14px;">{{community}}</span>
+                      <div class="comment-footer"> <span class="text-muted float-right" style="color:gray;font-size:14px;">{{community.date|date:'Y-m-d fa' }}</span></div>
+                  </div>
+                </div>
+              </a>
+              {% endfor %}
+            </div>
+        </div>
+        {% if user.is_authenticated %}
+        <a class="writeText" href='{% url 'toaddCommunitypage' %}'>글 쓰기</a>  
+        {% else %}
+        <a class="writeText" href="#loginmodal" rel="modal:open">글 쓰기</a>
+        {% endif %}
+    
+  </div>
+
+ 
+
+</body>
+
+
+{% endblock %}

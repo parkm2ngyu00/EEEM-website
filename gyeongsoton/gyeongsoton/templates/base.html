@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href='{% static "css/navbar.css" %}' />
+    <link rel="stylesheet" href='{% static "css/reset.css" %}' />
+    <link
+      href="https://fonts.googleapis.com/css?family=Arvo&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script
+      src="https://kit.fontawesome.com/740a1d0d1d.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+    <!-- jQuery Modal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
+    />
+    <script src='{% static "js/navbar.js" %}' defer></script>
+    <style type="text/css">
+      a:link {
+        color: black;
+        text-decoration: none;
+      }
+      a:visited {
+        color: black;
+        text-decoration: none;
+      }
+      a:hover {
+        color: black;
+        text-decoration: none;
+      }
+    </style>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous"> -->
+  </head>
+  {% block extrahead %}{% endblock %}
+  <body>
+    <nav class="navbar">
+      <div class="navbar__brand">
+        <a href="{%url 'home' %}">
+          <div>
+            <img src="{% static 'img/logo.png' %}" />
+            <strong>이음</strong>
+            <span>EEEM</span>
+          </div>
+        </a>
+      </div>
+      <ul class="navbar__buttons">
+        <li class="nav-item co">
+          <a class="nav-link" href="{%url 'community' %}">커뮤니티</a>
+        </li>
+        <li class="nav-item ma">
+          <a class="nav-link" href="{%url 'manner' %}">매너를 지켜쥬</a>
+        </li>
+        <li class="nav-item ne">
+          <a class="nav-link" href="{%url 'newproduct' %}">신문물 소개</a>
+        </li>
+        <li class="nav-item te">
+          <a class="nav-link" href="{%url 'newterms' %}">신조어 능력고사</a>
+        </li>
+      </ul>
+      {% if not user.is_authenticated %}
+      <a class="login__btn" href="{%url 'login' %}">
+        <span>로그인</span>
+      </a>
+      {% endif %} {% if user.is_authenticated %}
+      <a class="logout__btn" href="{%url 'logout' %}">
+        <span>로그아웃</span>
+      </a>
+      {% if user.profile %}
+        <div class="user">
+          <div class="userprofile">
+            <img
+              src="{{request.user.profile.url}}"
+              style="border-radius: 70%; margin-right: 10px"
+              alt="user"
+              width="37px"
+              class="rounded-circle"
+            />
+            <div class="username"><span>{{request.user.nickname}}</span></div>
+          </div>
+          {% endif %}
+          <div class="coin">
+            <img
+              src="{% static 'img/coin.png' %}"
+              width="30px"
+              style="margin-right: 10px"
+            />
+            <span class="cointext" style="margin-right: 30px;">{{request.user.coin}}</span>
+          </div>
+          <div class="bell">
+            <span class="profile icon" id="bell">
+              <img src="/static/img/bell.png" style="width:30px; height:25px;"/>
+            </span>
+          </div>  
+        </div>
+      {% endif %}
+
+
+      <div
+          class="notifications"
+          id="box"
+          style="overflow-y: auto; max-height: 400px; z-index: 3"
+        >
+          <h2>Notifications</h2>
+          <div class="text">
+            {% if notifications %}
+              {%for notification in notifications %}
+                <div class="text" style="line-height: 20px; margin:10px 10px 0px 10px; text-align: left;">{{notification.text}}<br><br></div>
+              {% endfor %}
+            {% else %}
+              <br><p style="text-align: center;">&nbsp&nbsp알림이 없습니다.</p><br><br>
+            {% endif %}
+        </div>
+
+    </nav>
+
+    <div id="loginmodal" class="modal">
+      <p>로그인 후 EEEM의 다양한 기능을 사용해보세요😃<br /><br /></p>
+      <button class="tologinbtn" onclick="location.href='{% url 'login' %}'">
+        로그인 하러 가기
+      </button>
+      <button class="tologinbtn" onclick="location.href='{% url 'signup' %}'">
+        회원가입 하러 가기
+      </button>
+    </div>
+    {% block content %} {% endblock %}
+  </body>
+
+  <script>
+    $(document).ready(function () {
+      var down = false;
+      $('#bell').click(function (e) {
+        var color = $(this).text();
+        if (down) {
+          $('#box').css('height', '0px');
+          $('#box').css('opacity', '0');
+          down = false;
+        } else {
+          $('#box').css('height', 'auto');
+          $('#box').css('opacity', '1');
+          down = true;
+        }
+      });
+    });
+  </script>
+</html>
